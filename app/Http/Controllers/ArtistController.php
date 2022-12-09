@@ -88,21 +88,20 @@ class ArtistController extends Controller
             $input['image'] = "$profileImage";
         }
     
-        $image_2 = $request->all();
         if ($background_image = $request->file('background_image')) {
             $destinationPath = '1st_bg/';
             $profileImage = date('YmdHis') . "." . $background_image->getClientOriginalExtension();
             $background_image->move($destinationPath, $profileImage);
-            $image_2['background_image'] = "$profileImage";
+            $input['background_image'] = "$profileImage";
         }
-    
-        $song = $request->all();
-        if ($audio = $request->file('audio')) {
+
+        if ($music = $request->file('audio')) {
             $destinationPath = 'songs/';
-            $songaudio = date('YmdHis') . "." . $audio->getClientOriginalExtension();
-            $audio->move($destinationPath, $songaudio);
-            $song['audio'] = "$profileImage";
+            $profileImage = date('YmdHis') . "." . $music->getClientOriginalExtension();
+            $music->move($destinationPath, $profileImage);
+            $input['audio'] = "$profileImage";
         }
+        
     
        songs::create($input);
        return redirect('/song-listing/{id}')
@@ -257,9 +256,7 @@ return redirect('/artistlist')
              $data=artist::find($id);
                 return view ('pages.admin_artist_PROFILE', ['artist'=>$data]);
     }
-
     
-
      /**
      * Update the specified resource in storage.
      *
@@ -299,40 +296,41 @@ return redirect('/artistlist')
         $data->info2=$request->info2;    
         $data->info3=$request->info3;    
         $data->save();
-        $input = $request->all();
-  
-        if ($image = $request->file('image')) {
-            $destinationPath = 'image/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['image'] = "$profileImage";
-        }else{
-            unset($input['image']);
-        }
 
-        if ($image = $request->file('background_img')) {
-            $destinationPath = 'image/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['background_img'] = "$profileImage";
-        }else{
-            unset($input['background_img']);
-        }
-
-        
-        if ($image = $request->file('secondbackground_img')) {
-            $destinationPath = 'image/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $input['secondbackground_img'] = "$profileImage";
-        }else{
-            unset($input['secondbackground_img']);
-        }
-        $data->update($input);
-        return redirect('/song-listing/{id}')
-                        ->with('success','Song details Updated Successfully');
-    }
-
+    $input = $request->all();
+if ($image = $request->file('image')) {
+    $destinationPath = 'image/';
+    $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+    $image->move($destinationPath, $profileImage);
+    $input['image'] = "$profileImage";
+}else
+{
+    unset($input['image']);
+}
+if ($image = $request->file('background_image')) {
+    $destinationPath = '1st_bg/';
+    $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+    $image->move($destinationPath, $profileImage);
+    $input['background_image'] = "$profileImage";
+}
+else
+{
+    unset($input['background_image']);
+}
+if ($image = $request->file('audio')) {
+    $destinationPath = '2nd_bg/';
+    $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+    $image->move($destinationPath, $profileImage);
+    $input['audio'] = "$profileImage";
+}
+else
+{
+    unset($input['audio']);
+}
+$members->update($input);
+    return redirect('/song-listing/{id}')
+            ->with('success','Song details Updated Successfully');
+    }    
         /**
      * Remove the specified resource from storage.
      *
@@ -420,7 +418,6 @@ $members->nationality =$request->nationality ;
 $members->address =$request->address ;
 $members->save();
 
-       
 $input = $request->all();
 
 if ($image = $request->file('image')) {
@@ -428,35 +425,34 @@ if ($image = $request->file('image')) {
     $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
     $image->move($destinationPath, $profileImage);
     $input['image'] = "$profileImage";
-}else{
+}else
+{
     unset($input['image']);
 }
 
-$input_2 = $request->all();
-
-if ($background_img = $request->file('background_img')) {
-    $destinationPath = 'image/';
-    $profileImage = date('YmdHis') . "." . $background_img->getClientOriginalExtension();
-    $background_img->move($destinationPath, $profileImage);
-    $input_2['background_img'] = "$profileImage";
-}else{
-    unset($input_2['background_img']);
+if ($image = $request->file('background_img')) {
+    $destinationPath = '1st_bg/';
+    $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+    $image->move($destinationPath, $profileImage);
+    $input['background_img'] = "$profileImage";
 }
-  
-$input_3 = $request->all();
+else
+{
+    unset($input['background_img']);
+}
 
-if ($secondbackground_img = $request->file('secondbackground_img')) {
-    $destinationPath = 'image/';
-    $profileImage = date('YmdHis') . "." . $secondbackground_img->getClientOriginalExtension();
-    $secondbackground_img->move($destinationPath, $profileImage);
-    $input_3['secondbackground_img'] = "$profileImage";
-}else{
-    unset($input_3['secondbackground_img']);
+if ($image = $request->file('secondbackground_img')) {
+    $destinationPath = '2nd_bg/';
+    $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+    $image->move($destinationPath, $profileImage);
+    $input['secondbackground_img'] = "$profileImage";
+}
+else
+{
+    unset($input['secondbackground_img']);
 }
 
 $members->update($input);
-$members->update($input_2);
-$members->update($input_3);
 return redirect()->route('admin_artistlist')
                 ->with('success','Artist Credentials Updated Successfully');
     }

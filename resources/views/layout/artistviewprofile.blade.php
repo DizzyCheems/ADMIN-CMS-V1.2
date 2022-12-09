@@ -184,11 +184,11 @@
                         <div class="content" >
                             <div class="btn-controls">
                                 <div class="btn-box-row row-fluid" style="margin-left:-30px; position:relative; top:-450px;">
-                                    <a href="#" class="btn-box big span4"> <img src="/image/{{ $artist->artistimage }}" alt="Artist" style="width:250px; height:250px;"  >
+                                    <a href="#" class="btn-box big span4"> <img src="/1st_bg/{{ $artist->background_img }}" alt="Artist" style="width:250px; height:250px;"  >
                    <b></b>
                                  <div class="mt-3">
                                    <h4>{{$artist['artistname']}}</h4>
-                                     <p class="text-secondary mb-1" style="font-weight: bold;"> {{$artist['artistgenre']}} </p>
+                                     <p class="text-secondary mb-1" style="font-weight: bold;"> {{$artist['genre']}} </p>
                                      <p class="text-muted font-size-sm" style="font-weight: bold;">{{$artist['nationality']}}   </p>
                            
                                     

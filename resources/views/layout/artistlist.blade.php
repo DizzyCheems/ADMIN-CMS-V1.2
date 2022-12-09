@@ -141,7 +141,7 @@
                                     <div class="span6">
                                         <div class="media user">
                                             <a class="media-avatar pull-left" href="{{route('executive_artistprofile',  $artist['id'])}}">
-                                            <img src="/image/{{ $artist->image }}" width="100px">
+                                            <img src="/1st_bg/{{ $artist->background_img }}" width="100px">
                                             </a>
                                            
                                             <div class="media-body">

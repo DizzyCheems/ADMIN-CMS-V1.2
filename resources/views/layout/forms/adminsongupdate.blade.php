@@ -84,7 +84,7 @@
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
-        <input name="info" class="form-control" placeholder="Date Released" type="text">
+        <input name="info" class="form-control" placeholder="Info 1" type="text" value="{{$songs['info']}}>
 
     </div> <!-- form-group// -->
 	@error('info')
@@ -95,7 +95,7 @@
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
-        <input name="info2" class="form-control" placeholder="Date Released" type="text">
+        <input name="info2" class="form-control" placeholder="Info 2" type="text" value="{{$songs['info2']}}>
 
     </div> <!-- form-group// -->
 	@error('info2')
@@ -106,7 +106,7 @@
     	<div class="input-group-prepend">
 		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 		 </div>
-        <input name="info3" class="form-control" placeholder="Date Released" type="text">
+        <input name="info3" class="form-control" placeholder="Info 3" type="text" value="{{$songs['info3']}}">
 
     </div> <!-- form-group// -->
 	@error('info3')
@@ -136,12 +136,28 @@
 		 </div>
 		 <input name="background_image"  class="form-control" placeholder="Background Cover Photo" type="text" readonly>
         <input name="background_image"  class="form-control" placeholder="Song Background Cover Photo" type="file">
-    </div> <!-- form-group// -->
+		<img src="/1st_bg/{{ $songs->background_image }}" width="100px">
+	</div> <!-- form-group// -->
 
 	@error('background_image')
     <div class="alert alert-danger" >{{ $message }}</div>
 	@enderror
 	
+	<div class="form-group input-group">
+    	<div class="input-group-prepend">
+	</div> <!-- form-group end.// -->
+	<div class="input-group-prepend">
+		    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+		 </div>
+		 <input name="audio"  class="form-control" placeholder="Audio File" type="text" readonly>
+        <input name="audio"  class="form-control" placeholder="Audio File" type="file">
+    </div> <!-- form-group// -->
+
+	@error('audio')
+    <div class="alert alert-danger" >{{ $message }}</div>
+	@enderror
+	
+
     <div class="form-group input-group">
                                        
     <div class="form-group">
